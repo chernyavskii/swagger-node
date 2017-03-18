@@ -1,0 +1,462 @@
+---
+swagger: "2.0"
+info:
+  description: "FBI documentation"
+  version: "1.0.0"
+  title: "fbi-api"
+host: "localhost"
+basePath: "/api"
+schemes:
+- "https"
+- "http"
+produces:
+- "application/json"
+- "text/json"
+paths:
+  /users:
+    get:
+      description: "Список всех пользователей"
+      operationId: "usersGET"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetUsersListResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+    post:
+      description: "Добавить нового пользователя"
+      operationId: "usersPOST"
+      parameters:
+      - in: "body"
+        name: "title"
+        description: "Атрибуты пользователя"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+    x-swagger-router-controller: "Users"
+  /users/{id}:
+    get:
+      description: "Получить пользователя по id"
+      operationId: "usersIdGET"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id пользователя"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetUserResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+    put:
+      description: "Изменить пользователя"
+      operationId: "usersIdPUT"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id пользователя"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "title"
+        description: "атрибуты пользователя"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+    delete:
+      description: "Удалить пользователя"
+      operationId: "usersIdDELETE"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id пользователя"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+    x-swagger-router-controller: "Users"
+  /punishment:
+    get:
+      description: "Список всех взысканий"
+      operationId: "punishmentGET"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetPunishmentsListResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Punishments"
+    post:
+      description: "Добавить новое взыскание"
+      operationId: "punishmentPOST"
+      parameters:
+      - in: "body"
+        name: "title"
+        description: "Атрибуты взыскания"
+        required: true
+        schema:
+          $ref: "#/definitions/Punishment"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Punishments"
+    x-swagger-router-controller: "Punishments"
+  /punishment/{id}:
+    get:
+      description: "Получить взыскание по id"
+      operationId: "punishmentIdGET"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id взыскания"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetPunishmentResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Punishments"
+    put:
+      description: "Изменить взыскание"
+      operationId: "punishmentIdPUT"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id взыскания"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "title"
+        description: "атрибуты взыскания"
+        required: true
+        schema:
+          $ref: "#/definitions/Punishment"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Punishments"
+    delete:
+      description: "Удалить взыскание"
+      operationId: "punishmentIdDELETE"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id взыскания"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Punishments"
+    x-swagger-router-controller: "Punishments"
+  /wanted:
+    get:
+      description: "Отчет о разыскиваемых"
+      operationId: "wantedGET"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetWantedsListResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Wanteds"
+    post:
+      description: "Добавить новую запись"
+      operationId: "wantedPOST"
+      parameters:
+      - in: "body"
+        name: "title"
+        required: true
+        schema:
+          $ref: "#/definitions/Wanted"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Wanteds"
+    x-swagger-router-controller: "Wanteds"
+  /wanted/{id}:
+    get:
+      description: "Получить запись по id"
+      operationId: "wantedIdGET"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetWantedResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Wanteds"
+    put:
+      description: "Изменить запись"
+      operationId: "wantedIdPUT"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "title"
+        required: true
+        schema:
+          $ref: "#/definitions/Wanted"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Wanteds"
+    delete:
+      description: "Удалить запись"
+      operationId: "wantedIdDELETE"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Wanteds"
+    x-swagger-router-controller: "Wanteds"
+definitions:
+  GetPunishmentsListResponse:
+    required:
+    - "punishment"
+    properties:
+      punishment:
+        type: "array"
+        items:
+          $ref: "#/definitions/GetPunishmentsListResponse_punishment"
+  GetUsersListResponse:
+    required:
+    - "users"
+    properties:
+      users:
+        type: "array"
+        items:
+          $ref: "#/definitions/GetUsersListResponse_users"
+  GetWantedsListResponse:
+    required:
+    - "wanted"
+    properties:
+      wanted:
+        type: "array"
+        items:
+          $ref: "#/definitions/GetWantedsListResponse_wanted"
+  GetPunishmentResponse:
+    required:
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+  GetUserResponse:
+    required:
+    - "age"
+    - "location"
+    - "name"
+    - "passport"
+    - "surname"
+    properties:
+      name:
+        type: "string"
+      surname:
+        type: "string"
+      age:
+        type: "string"
+      location:
+        type: "string"
+      passport:
+        type: "string"
+  GetWantedResponse:
+    required:
+    - "id_punishment"
+    - "id_user"
+    properties:
+      id_user:
+        type: "integer"
+      id_punishment:
+        type: "integer"
+  User:
+    type: "object"
+    required:
+    - "age"
+    - "location"
+    - "name"
+    - "passport"
+    - "surname"
+    properties:
+      name:
+        type: "string"
+        description: "Ваше имя"
+      surname:
+        type: "string"
+        description: "Ваша фамилия"
+      age:
+        type: "string"
+        description: "Ваш возраст"
+      location:
+        type: "string"
+        description: "Ваш адрес"
+      passport:
+        type: "string"
+        description: "Ваши паспортные данные"
+  Punishment:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "Ваше взыскание"
+  Wanted:
+    type: "object"
+    required:
+    - "id_punishment"
+    - "id_user"
+    properties:
+      id_user:
+        type: "string"
+        description: "id личности"
+      id_punishment:
+        type: "string"
+        description: "id взыскания"
+  GeneralResponse:
+    type: "object"
+    required:
+    - "description"
+    - "success"
+    properties:
+      success:
+        type: "number"
+      description:
+        type: "string"
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      fields:
+        type: "string"
+  GetPunishmentsListResponse_punishment:
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+  GetUsersListResponse_users:
+    properties:
+      name:
+        type: "string"
+      surname:
+        type: "string"
+      age:
+        type: "string"
+      location:
+        type: "string"
+      passport:
+        type: "string"
+  GetWantedsListResponse_wanted:
+    properties:
+      id_user:
+        type: "string"
+      id_punishment:
+        type: "string"
